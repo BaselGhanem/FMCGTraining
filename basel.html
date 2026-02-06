@@ -148,46 +148,48 @@
 
 
 
-    <header class="bg-white/95 backdrop-blur-sm shadow-sm sticky top-0 z-50 border-b border-gray-100 transition-all duration-300">
-
+   <header class="bg-white/95 backdrop-blur-sm shadow-sm sticky top-0 z-50 border-b border-gray-100 transition-all duration-300">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-
             <a href="#" class="flex items-center gap-3 group">
-
                 <div class="w-10 h-10 bg-brand-900 text-white flex items-center justify-center font-bold text-lg rounded shadow-lg group-hover:bg-brand-600 transition duration-300">B</div>
-
                 <div class="flex flex-col">
-
                     <span class="text-lg font-bold text-brand-900 leading-tight">BASEL</span>
-
                     <span class="text-xs text-gray-500 font-medium tracking-wide">Data & Performance Training</span>
-
                 </div>
-
             </a>
-
             
+            <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-600">
+                <a href="index.html" class="flex items-center gap-1 hover:text-brand-600 transition duration-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+                    الرئيسية
+                </a>
 
-            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+                <a href="#excel" class="hover:text-brand-600 hover:bg-gray-50 px-2 py-1 rounded transition duration-200">Excel</a>
+                <a href="#powerbi" class="hover:text-brand-600 hover:bg-gray-50 px-2 py-1 rounded transition duration-200">Power BI</a>
 
-                <a href="#excel" class="hover:text-brand-600 hover:bg-gray-50 px-3 py-2 rounded-md transition duration-200">برنامج Excel</a>
-
-                <a href="#powerbi" class="hover:text-brand-600 hover:bg-gray-50 px-3 py-2 rounded-md transition duration-200">برنامج Power BI</a>
-
-                <a href="#other-trainers" class="hover:text-brand-600 hover:bg-gray-50 px-3 py-2 rounded-md transition duration-200">دورات أخرى</a>
-
-                <a href="#trainer" class="hover:text-brand-600 hover:bg-gray-50 px-3 py-2 rounded-md transition duration-200">عن المدرب</a>
-
+                <div class="relative group py-2">
+                    <button class="flex items-center gap-1 hover:text-brand-600 transition duration-200 focus:outline-none">
+                        <span>برامج تدريبية أخرى</span>
+                        <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="absolute top-full -right-4 w-56 bg-white border border-gray-100 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-2 z-50">
+                        <div class="py-2">
+                            <a href="yasir.html" class="block px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-brand-600 transition flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-blue-900"></span>
+                                <span>ياسر حجازي (مبيعات)</span>
+                            </a>
+                            <a href="linda.html" class="block px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-brand-600 transition flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-purple-600"></span>
+                                <span>ليندا الكرد (قيادة فرق)</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </nav>
 
-
-
             <a href="#contact" class="hidden md:inline-block px-6 py-2.5 bg-brand-900 text-white text-sm font-bold rounded shadow hover:bg-brand-800 transition duration-300 transform hover:scale-105">اتصل بنا</a>
-
         </div>
-
     </header>
-
 
 
     <section class="hero-bg text-white h-[85vh] flex items-center relative overflow-hidden reveal-section">
