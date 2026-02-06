@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بناء الفرق الحقيقية | المدربة ليندا الكرد</title>
+    <meta name="description" content="برنامج بناء الفرق الحقيقية: رحلة عملية من التواصل إلى التفاوض والإنتاجية بقيادة الخبيرة ليندا الكرد.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            900: '#4c1d95', // Deep Purple (Leadership & Wisdom)
+                            800: '#5b21b6',
+                            700: '#6d28d9',
+                            600: '#7c3aed', 
+                            accent: '#fbbf24', // Amber/Gold (Excellence)
+                            light: '#f3f4f6'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Tajawal', 'sans-serif'],
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .hero-bg {
+            background-image: linear-gradient(rgba(76, 29, 149, 0.92), rgba(76, 29, 149, 0.85)), url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .reveal-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-slate-800 font-sans antialiased selection:bg-brand-600 selection:text-white">
+
+    <header class="bg-white/95 backdrop-blur-sm shadow-sm sticky top-0 z-50 border-b border-gray-100 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 bg-brand-900 text-white flex items-center justify-center font-bold text-lg rounded-full shadow-lg group-hover:bg-brand-600 transition duration-300">L</div>
+                <div class="flex flex-col">
+                    <span class="text-lg font-bold text-brand-900 leading-tight">LINDA EL KURD</span>
+                    <span class="text-[10px] text-gray-500 font-bold tracking-wide uppercase">Regional Business Development Director</span>
+                </div>
+            </a>
+            
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+                <a href="#about" class="hover:text-brand-600 hover:bg-purple-50 px-3 py-2 rounded-md transition duration-200">عن البرنامج</a>
+                <a href="#agenda" class="hover:text-brand-600 hover:bg-purple-50 px-3 py-2 rounded-md transition duration-200">جدول التدريب</a>
+                <a href="#methodology" class="hover:text-brand-600 hover:bg-purple-50 px-3 py-2 rounded-md transition duration-200">المنهجية</a>
+                <a href="#trainer" class="hover:text-brand-600 hover:bg-purple-50 px-3 py-2 rounded-md transition duration-200">عن المدربة</a>
+            </nav>
+
+            <a href="#contact" class="hidden md:inline-block px-6 py-2.5 bg-brand-900 text-white text-sm font-bold rounded-full shadow hover:bg-brand-800 transition duration-300 transform hover:scale-105">تواصل معنا</a>
+        </div>
+    </header>
+
+    <section class="hero-bg text-white h-[90vh] flex items-center relative overflow-hidden reveal-section">
+        <div class="absolute inset-0 bg-gradient-to-t from-brand-900 via-transparent to-transparent opacity-60"></div>
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <span class="inline-block py-1.5 px-4 rounded-full bg-brand-accent/20 border border-brand-accent/50 text-brand-accent text-sm font-bold mb-6 backdrop-blur-sm tracking-wide">
+                رحلة عملية من التواصل إلى التفاوض والإنتاجية
+            </span>
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight tracking-tight">
+                Building <span class="text-brand-accent">Real Teams</span><br/>
+                <span class="text-3xl md:text-5xl font-light opacity-90 block mt-4">بناء الفرق الحقيقية</span>
+            </h1>
+            
+            <p class="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto mb-10 font-light leading-relaxed animate-fade-in-up">
+                برنامج يهدف لتطوير الفرق من الداخل إلى الخارج، لتعزيز الوعي الذاتي، بناء الثقة، وإدارة الخلافات باستخدام نماذج عالمية مثبتة مثل DISC و Lencioni.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#agenda" class="px-8 py-4 bg-brand-accent text-brand-900 rounded-full font-bold hover:bg-yellow-400 transition shadow-lg shadow-brand-accent/30">استعراض المحاور</a>
+                <a href="#trainer" class="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-full font-bold text-white hover:bg-white/20 transition">المدربة ليندا الكرد</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 bg-white relative reveal-section">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl font-bold text-brand-900 mb-4">لماذا هذا البرنامج؟</h2>
+                <p class="text-gray-600 leading-relaxed">
+                    يعتمد التدريب على أسلوب تفاعلي غنيّ بالتطبيقات العملية والمحاكاة الواقعية، مما يجعله مناسباً تماماً لفرق المبيعات والإداريين الذين يسعون لتحسين تعاونهم ورفع أدائهم بطريقة ذكية ومستدامة.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-purple-50 p-8 rounded-2xl border border-purple-100 hover:shadow-xl transition duration-300">
+                    <div class="w-14 h-14 bg-purple-200 rounded-full flex items-center justify-center mb-6 text-brand-800 text-2xl">🤝</div>
+                    <h3 class="text-xl font-bold text-brand-900 mb-3">التواصل والوعي الذاتي</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">فهم أنماط الشخصيات (DISC) وتحسين مهارات التواصل ولغة الجسد لتقليل الفجوات بين أعضاء الفريق.</p>
+                </div>
+                <div class="bg-yellow-50 p-8 rounded-2xl border border-yellow-100 hover:shadow-xl transition duration-300">
+                    <div class="w-14 h-14 bg-yellow-200 rounded-full flex items-center justify-center mb-6 text-brand-900 text-2xl">🧱</div>
+                    <h3 class="text-xl font-bold text-brand-900 mb-3">بناء الثقة وإدارة الخلاف</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">معالجة الاختلالات الخمسة للفريق (Lencioni) وتحويل الخلافات إلى فرص للبناء بدلاً من الهدم.</p>
+                </div>
+                <div class="bg-blue-50 p-8 rounded-2xl border border-blue-100 hover:shadow-xl transition duration-300">
+                    <div class="w-14 h-14 bg-blue-200 rounded-full flex items-center justify-center mb-6 text-blue-800 text-2xl">🚀</div>
+                    <h3 class="text-xl font-bold text-brand-900 mb-3">الأداء الذكي والتفاوض</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">إدارة الوقت (Eisenhower Matrix) واكتساب مهارات التفاوض (Win-Win) لتحقيق نتائج متوازنة.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="methodology" class="py-20 bg-brand-900 text-white relative overflow-hidden reveal-section">
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+            <svg viewBox="0 0 100 100" preserveAspectRatio="none" class="w-full h-full text-brand-600 fill-current">
+                <path d="M0 100 C 20 0 50 0 100 100 Z"></path>
+            </svg>
+        </div>
+        <div class="container mx-auto px-6 relative z-10">
+            <h2 class="text-3xl font-bold text-center mb-12">نماذج علمية وعالمية مثبتة</h2>
+            <div class="flex flex-wrap justify-center gap-6">
+                <div class="px-6 py-3 bg-white/10 backdrop-blur rounded-lg border border-white/20 font-semibold hover:bg-brand-accent hover:text-brand-900 transition cursor-default">
+                    🔹 نموذج DISC لأنماط الشخصيات
+                </div>
+                <div class="px-6 py-3 bg-white/10 backdrop-blur rounded-lg border border-white/20 font-semibold hover:bg-brand-accent hover:text-brand-900 transition cursor-default">
+                    🔹 The 5 Dysfunctions of a Team
+                </div>
+                <div class="px-6 py-3 bg-white/10 backdrop-blur rounded-lg border border-white/20 font-semibold hover:bg-brand-accent hover:text-brand-900 transition cursor-default">
+                    🔹 Eisenhower Matrix (Time Mgmt)
+                </div>
+                <div class="px-6 py-3 bg-white/10 backdrop-blur rounded-lg border border-white/20 font-semibold hover:bg-brand-accent hover:text-brand-900 transition cursor-default">
+                    🔹 Pareto Principle (80/20)
+                </div>
+                <div class="px-6 py-3 bg-white/10 backdrop-blur rounded-lg border border-white/20 font-semibold hover:bg-brand-accent hover:text-brand-900 transition cursor-default">
+                    🔹 استراتيجيات التفاوض BATNA
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="agenda" class="py-24 bg-gray-50 reveal-section">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-gray-200 pb-6">
+                <div>
+                    <h2 class="text-4xl font-bold text-brand-900 mb-2">الهيكل العام للتدريب</h2>
+                    <p class="text-gray-500">برنامج مكثف لمدة 3 أيام يغطي كافة الجوانب الأساسية لبناء الفريق.</p>
+                </div>
+                <div class="hidden md:block">
+                    <span class="text-brand-600 font-bold bg-purple-100 px-4 py-2 rounded-full text-sm">ورش عمل وتطبيقات عملية</span>
+                </div>
+            </div>
+
+            <div class="space-y-8">
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden group">
+                    <div class="flex flex-col md:flex-row">
+                        <div class="bg-brand-900 text-white p-6 md:w-48 flex flex-col justify-center items-center text-center group-hover:bg-brand-700 transition">
+                            <span class="text-4xl font-bold mb-2">01</span>
+                            <span class="text-sm font-medium opacity-80 uppercase tracking-wider">اليوم الأول</span>
+                        </div>
+                        <div class="p-8 flex-grow">
+                            <h3 class="text-2xl font-bold text-brand-900 mb-4">Self-Awareness & Communication</h3>
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="font-bold text-gray-700 mb-3 border-r-4 border-brand-accent pr-3">المحاور الأساسية</h4>
+                                    <ul class="space-y-2 text-gray-600 text-sm">
+                                        <li>• <strong>DISC أنماط الشخصية:</strong> فهم الأنماط الأربعة لتحسين التواصل.</li>
+                                        <li>• <strong>التكيف:</strong> تعلم كيفية التواصل مع كل نمط بفعالية.</li>
+                                        <li>• <strong>لغة الجسد:</strong> كيف نقرأ 60% من التواصل غير اللفظي.</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-700 mb-3 border-r-4 border-green-500 pr-3">الأنشطة التطبيقية</h4>
+                                    <ul class="space-y-2 text-gray-600 text-sm bg-gray-50 p-4 rounded-lg">
+                                        <li>✅ اختبار DISC سريع وتحديد نمط الفريق.</li>
+                                        <li>✅ نشاط تقمص الأدوار (Role-play) حسب الأنماط.</li>
+                                        <li>✅ تمارين قراءة لغة الجسد.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden group">
+                    <div class="flex flex-col md:flex-row">
+                        <div class="bg-brand-800 text-white p-6 md:w-48 flex flex-col justify-center items-center text-center group-hover:bg-brand-600 transition">
+                            <span class="text-4xl font-bold mb-2">02</span>
+                            <span class="text-sm font-medium opacity-80 uppercase tracking-wider">اليوم الثاني</span>
+                        </div>
+                        <div class="p-8 flex-grow">
+                            <h3 class="text-2xl font-bold text-brand-900 mb-4">Building Real Team Spirit</h3>
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="font-bold text-gray-700 mb-3 border-r-4 border-brand-accent pr-3">المحاور الأساسية</h4>
+                                    <ul class="space-y-2 text-gray-600 text-sm">
+                                        <li>• <strong>5 اختلالات للفريق:</strong> (The 5 Dysfunctions) تشخيص غياب الثقة والخوف.</li>
+                                        <li>• <strong>إدارة الخلاف:</strong> استخدام نموذج DESC لتحويل الصراع لحوار.</li>
+                                        <li>• <strong>بناء الروح:</strong> تعزيز الالتزام والمساءلة والنتائج.</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-700 mb-3 border-r-4 border-green-500 pr-3">الأنشطة التطبيقية</h4>
+                                    <ul class="space-y-2 text-gray-600 text-sm bg-gray-50 p-4 rounded-lg">
+                                        <li>✅ نشاط Blindfold Trust Walk لبناء الثقة.</li>
+                                        <li>✅ تشكيل شعار الفريق الموحد.</li>
+                                        <li>✅ بناء هرم الفريق المكتمل (عملي).</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden group">
+                    <div class="flex flex-col md:flex-row">
+                        <div class="bg-brand-700 text-white p-6 md:w-48 flex flex-col justify-center items-center text-center group-hover:bg-brand-500 transition">
+                            <span class="text-4xl font-bold mb-2">03</span>
+                            <span class="text-sm font-medium opacity-80 uppercase tracking-wider">اليوم الثالث</span>
+                        </div>
+                        <div class="p-8 flex-grow">
+                            <h3 class="text-2xl font-bold text-brand-900 mb-4">Smart Performance: Time & Negotiation</h3>
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="font-bold text-gray-700 mb-3 border-r-4 border-brand-accent pr-3">المحاور الأساسية</h4>
+                                    <ul class="space-y-2 text-gray-600 text-sm">
+                                        <li>• <strong>إدارة الوقت:</strong> مصفوفة آيزنهاور ومبدأ باريتو (80/20).</li>
+                                        <li>• <strong>الأولويات:</strong> التفريق بين المهم والعاجل وقاعدة 52/17.</li>
+                                        <li>• <strong>مهارات التفاوض:</strong> استراتيجية BATNA و Win-Win.</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-700 mb-3 border-r-4 border-green-500 pr-3">الأنشطة التطبيقية</h4>
+                                    <ul class="space-y-2 text-gray-600 text-sm bg-gray-50 p-4 rounded-lg">
+                                        <li>✅ تصنيف مهام واقعية داخل مصفوفة الأولويات.</li>
+                                        <li>✅ تمثيل سيناريوهات تفاوض واقعية (Role-Play).</li>
+                                        <li>✅ طرح الأسئلة الذكية بدلاً من الصدام.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="trainer" class="py-24 bg-white relative reveal-section">
+        <div class="container mx-auto px-6">
+            <div class="bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden">
+                <div class="flex flex-col lg:flex-row">
+                    <div class="lg:w-1/3 bg-brand-900 text-white p-10 flex flex-col items-center text-center relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-full bg-brand-800 opacity-50 z-0"></div>
+                        <div class="relative z-10 w-full">
+                            <div class="w-48 h-48 mx-auto bg-gray-200 rounded-full border-4 border-brand-accent mb-6 overflow-hidden shadow-lg">
+                                <img src="https://raw.githubusercontent.com/BaselGhanem/FMCGTraining/refs/heads/main/lina.jpg" 
+                                     alt="Linda El Kurd" 
+                                     class="w-full h-full object-cover transform hover:scale-110 transition duration-500">
+                            </div>
+                            <h2 class="text-3xl font-bold mb-2">ليندا الكرد</h2>
+                            <p class="text-brand-accent font-medium text-sm uppercase tracking-wide mb-6">Regional Business Development Director</p>
+                            
+                            <div class="space-y-3 text-sm text-gray-300 mb-8">
+                                <p>🏅 Certified Organizational Culture Transformation (META TEAM)</p>
+                                <p>🏅 Certified Sales Professional</p>
+                                <p>🏅 Certified Leadership & Soft Skills Trainer</p>
+                            </div>
+
+                            <a href="mailto:lindakurd@gmail.com" class="inline-block w-full py-3 bg-brand-accent text-brand-900 font-bold rounded-lg hover:bg-yellow-400 transition">تواصل عبر البريد الإلكتروني</a>
+                            <p class="mt-4 text-sm text-gray-300 ltr" dir="ltr">lindakurd@gmail.com</p>
+                            <p class="text-sm text-gray-300 ltr" dir="ltr">00962-792280210</p>
+                        </div>
+                    </div>
+
+                    <div class="lg:w-2/3 p-10 lg:p-14">
+                        <div class="mb-10">
+                            <h3 class="text-2xl font-bold text-brand-900 mb-6 border-b pb-3">الملف الشخصي والخبرات</h3>
+                            <p class="text-gray-600 leading-relaxed text-justify mb-4">
+                                مديرة ذات خبرة واسعة تتجاوز <strong>20 عاماً</strong> في قيادة المشاريع الضخمة عبر قطاعات متنوعة (الخاص، المنظمات غير الحكومية، التعليم، والتمويل). تمتلك مهارات استثنائية في تطوير الأعمال، إدارة البرامج، المراقبة والتقييم (M&E).
+                            </p>
+                            <p class="text-gray-600 leading-relaxed text-justify">
+                                قادت توسعات استراتيجية وشراكات كبرى في المنطقة (الأردن، السعودية، الإمارات، الكويت)، ولديها شغف بفهم دوافع الأفراد وتصميم عمليات تعزز الكفاءة التنظيمية.
+                            </p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-8 mb-10">
+                            <div>
+                                <h4 class="font-bold text-brand-800 mb-4 flex items-center gap-2">
+                                    <span class="w-2 h-2 bg-brand-accent rounded-full"></span>
+                                    الخبرات العملية (Experience)
+                                </h4>
+                                <ul class="space-y-3 text-sm text-gray-600 border-r-2 border-gray-100 pr-4">
+                                    <li><strong>2025 - الآن:</strong> Managing Director 9 steps</li>
+                                    <li><strong>2023 - 2025:</strong> Regional Business Development Director, Challenger Team</li>
+                                    <li><strong>2022:</strong> Program Manager, صندوق الأمان لمستقبل الأيتام</li>
+                                    <li><strong>2017 - 2019:</strong> Program Manager, إنجاز (INJAZ)</li>
+                                    <li><strong>سابقاً:</strong> مديرة متطوعين (Run Jordan)، معلمة أعمال وتكنولوجيا (فلسطين).</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-brand-800 mb-4 flex items-center gap-2">
+                                    <span class="w-2 h-2 bg-brand-accent rounded-full"></span>
+                                    مجالات الخبرة (Expertise)
+                                </h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-purple-50 text-brand-700 px-3 py-1 rounded text-xs font-semibold">Leadership Development</span>
+                                    <span class="bg-purple-50 text-brand-700 px-3 py-1 rounded text-xs font-semibold">Team Culture Transformation</span>
+                                    <span class="bg-purple-50 text-brand-700 px-3 py-1 rounded text-xs font-semibold">Sales Expert</span>
+                                    <span class="bg-purple-50 text-brand-700 px-3 py-1 rounded text-xs font-semibold">Agility Management</span>
+                                    <span class="bg-purple-50 text-brand-700 px-3 py-1 rounded text-xs font-semibold">Proposal Writing</span>
+                                </div>
+                                <h4 class="font-bold text-brand-800 mt-6 mb-2 flex items-center gap-2">
+                                    <span class="w-2 h-2 bg-brand-accent rounded-full"></span>
+                                    المؤهلات العلمية
+                                </h4>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>🎓 بكالوريوس إدارة أعمال - الجامعة الأردنية (1996)</li>
+                                    <li>🎓 B.E.D في التربية - كلية ديفيد يلين (2011)</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="font-bold text-brand-800 mb-4">البرامج التدريبية التي تقدمها</h4>
+                            <div class="grid md:grid-cols-2 gap-4 text-sm text-gray-600">
+                                <ul class="list-disc list-inside space-y-1">
+                                    <li><strong>Leadership:</strong> 5 Levels of Leadership, Inclusive Leadership.</li>
+                                    <li><strong>Culture:</strong> META TEAM, High performing teams.</li>
+                                </ul>
+                                <ul class="list-disc list-inside space-y-1">
+                                    <li><strong>Soft Skills:</strong> Emotional Intelligence, Design Thinking.</li>
+                                    <li><strong>Sales:</strong> Professional selling skills, Fundamentals.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 bg-slate-900 text-white text-center reveal-section">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h2 class="text-3xl md:text-5xl font-bold mb-6">هل أنت مستعد لبناء فريق لا يقهر؟</h2>
+            <p class="text-gray-400 mb-10 text-lg">
+                استثمر في فريقك الآن. حول الخلافات إلى إنتاجية، والتواصل إلى نتائج ملموسة.
+            </p>
+            <div class="flex justify-center">
+                <a href="https://www.linkedin.com/in/lindaelkurd/" target="_blank" class="flex items-center gap-2 px-10 py-4 bg-blue-600 text-white text-lg font-bold rounded-full hover:bg-blue-500 transition shadow-xl shadow-blue-600/20">
+                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    تواصل عبر LinkedIn
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-950 text-slate-500 py-10 border-t border-slate-900 text-center text-sm">
+        <div class="container mx-auto px-6">
+            <p>&copy; 2026 جميع الحقوق محفوظة - ليندا الكرد | خبيرة القيادة وتطوير الأعمال</p>
+            <div class="flex justify-center gap-4 mt-4 items-center">
+                <a href="https://www.linkedin.com/in/lindaelkurd/" target="_blank" class="hover:text-white transition flex items-center gap-1">
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    LinkedIn Profile
+                </a>
+                <span class="text-slate-700">|</span>
+                <span class="hover:text-white transition cursor-default">00962-792280210</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Reveal on Scroll Logic
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal-visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
