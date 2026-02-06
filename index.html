@@ -23,126 +23,226 @@
                             accent: '#3b82f6'
                         }
                     },
-                    animation: {
-                        'fade-in': 'fadeIn 1s ease-out',
-                        'slide-up': 'slideUp 0.8s ease-out forwards',
-                    },
-                    keyframes: {
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' },
-                        },
-                        slideUp: {
-                            '0%': { opacity: '0', transform: 'translateY(40px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        }
+                    backgroundImage: {
+                        'noise': "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22 opacity=%221%22/%3E%3C/svg%3E')",
                     }
                 }
             }
         }
     </script>
     <style>
-        .card-zoom:hover .card-img {
-            /* تم تعديل التكبير ليكون أهدأ قليلاً */
-            transform: scale(1.05);
+        /* 5- Custom Cursor */
+        .cursor-dot,
+        .cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #3b82f6;
+        }
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(59, 130, 246, 0.5);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+        body:hover .cursor-outline.hovered {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(59, 130, 246, 0.1);
+            border-color: transparent;
+        }
+
+        /* 7- Background Noise */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0.05;
+            background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+        }
+
+        /* 1- Scroll Reveal Base Class */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 8- Smart Header */
+        .smart-header {
+            transition: transform 0.3s ease-in-out, background-color 0.3s;
+        }
+        .smart-header.nav-up {
+            transform: translateY(-100%);
         }
         .glass-nav {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+        }
+
+        /* 4- Dynamic Gradient Borders */
+        .gradient-border-card {
+            position: relative;
+            background: #fff;
+            border-radius: 1rem;
+            z-index: 1;
+        }
+        .gradient-border-card::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            z-index: -1;
+            border-radius: 1.1rem;
+            background: conic-gradient(from 0deg, transparent 70%, var(--border-color, #3b82f6));
+            opacity: 0;
+            transition: opacity 0.3s;
+            animation: spin 3s linear infinite;
+        }
+        .gradient-border-card:hover::before {
+            opacity: 1;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* 3- 3D Tilt Preserve */
+        .tilt-card {
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+        }
+        .tilt-content {
+            transform: translateZ(20px);
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans antialiased">
+<body class="bg-gray-50 text-gray-800 font-sans antialiased overflow-x-hidden">
 
-    <header class="glass-nav fixed w-full top-0 z-50 border-b border-gray-200 shadow-sm transition-all duration-300">
+    <div class="cursor-dot hidden md:block"></div>
+    <div class="cursor-outline hidden md:block"></div>
+    
+    <div class="noise-overlay"></div>
+
+    <header id="main-header" class="smart-header glass-nav fixed w-full top-0 z-50 border-b border-gray-200/50 shadow-sm">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-2 cursor-pointer magnetic-trigger">
                 <div class="w-10 h-10 bg-main-900 text-white flex items-center justify-center font-bold text-xl rounded-lg shadow-lg">T</div>
                 <span class="text-xl font-bold text-main-900">Training Hub</span>
             </div>
-            <a href="mailto:info@company.com" class="px-6 py-2 bg-main-900 text-white text-sm font-bold rounded-full hover:bg-main-800 transition shadow-lg">اتصل بنا</a>
+            <a href="mailto:info@company.com" class="magnetic-btn relative px-8 py-3 bg-main-900 text-white text-sm font-bold rounded-full overflow-hidden group shadow-lg">
+                <span class="relative z-10 block transition-transform group-hover:scale-110">اتصل بنا</span>
+                <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
+            </a>
         </div>
     </header>
 
-    <section class="relative h-[60vh] flex items-center justify-center bg-main-900 text-white overflow-hidden">
-        <div class="absolute inset-0 opacity-40 bg-[url('https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center bg-fixed"></div>
+    <section class="relative h-[75vh] flex items-center justify-center bg-main-900 text-white overflow-hidden">
+        <div class="absolute inset-0 opacity-40 bg-[url('https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center bg-fixed parallax-bg"></div>
         <div class="absolute inset-0 bg-gradient-to-t from-main-900 via-main-900/80 to-transparent"></div>
         
-        <div class="relative z-10 text-center px-6 animate-fade-in">
-            <span class="inline-block py-1 px-4 border border-white/30 rounded-full bg-white/10 backdrop-blur-md text-sm mb-6">بوابة الحلول التدريبية المتكاملة</span>
-            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
-                ارتقِ بأداء مؤسستك <br> <span class="text-blue-400">عبر ثلاثة مسارات احترافية</span>
+        <div class="relative z-10 text-center px-6 reveal">
+            <span class="inline-block py-1 px-4 border border-white/30 rounded-full bg-white/10 backdrop-blur-md text-sm mb-6 hover:bg-white/20 transition cursor-default">بوابة الحلول التدريبية المتكاملة</span>
+            <h1 class="text-4xl md:text-7xl font-extrabold mb-6 leading-tight">
+                ارتقِ بأداء مؤسستك <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">بقيادة الخبراء</span>
             </h1>
-            <p class="text-gray-300 text-lg max-w-2xl mx-auto font-light">
-                نجمع لك نخبة المدربين في المبيعات، القيادة، وتحليل البيانات في منصة واحدة لتحقيق التكامل المؤسسي.
+            <p class="text-gray-300 text-lg max-w-2xl mx-auto font-light mb-10">
+                نجمع لك نخبة المدربين في المبيعات، القيادة، وتحليل البيانات في منصة واحدة.
             </p>
+            <div class="flex justify-center gap-4">
+                <button class="magnetic-btn px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-bold shadow-blue-500/30 shadow-lg transition">تصفح المسارات</button>
+            </div>
+        </div>
+
+        <div class="absolute bottom-0 w-full leading-none z-20">
+            <svg class="block w-full h-16 md:h-24 text-gray-50" viewBox="0 0 1440 320" preserveAspectRatio="none">
+                <path fill="currentColor" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
         </div>
     </section>
 
-    <section class="py-24 -mt-20 relative z-20">
+    <section class="py-20 relative z-20 bg-gray-50">
         <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-3 gap-8">
+            <div class="grid md:grid-cols-3 gap-10">
 
-                <div class="bg-white rounded-2xl shadow-xl overflow-hidden card-zoom group border border-gray-100 opacity-0 animate-slide-up" style="animation-delay: 0.1s;">
-                    <div class="h-64 overflow-hidden relative bg-gray-50">
-                        <div class="absolute inset-0 bg-indigo-900/10 z-10 group-hover:bg-transparent transition"></div>
-                        <img src="https://raw.githubusercontent.com/BaselGhanem/FMCGTraining/refs/heads/main/Yasir.png" class="w-full h-full object-contain p-2 card-img transition duration-700" alt="Yasir Hijazi">
-                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded text-xs font-bold text-indigo-900 shadow z-20">
-                            مبيعات & FMCG
+                <div class="gradient-border-card tilt-card group reveal" style="--border-color: #4f46e5;">
+                    <div class="bg-white rounded-2xl shadow-xl overflow-hidden h-full flex flex-col relative">
+                        <div class="h-64 overflow-hidden relative bg-gray-100 tilt-content">
+                            <div class="absolute inset-0 bg-indigo-900/10 z-10 group-hover:bg-transparent transition duration-500"></div>
+                            <img src="https://raw.githubusercontent.com/BaselGhanem/FMCGTraining/refs/heads/main/Yasir.png" class="w-full h-full object-contain p-2 transition-transform duration-700 group-hover:scale-110" alt="Yasir Hijazi">
+                            <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded text-xs font-bold text-indigo-900 shadow-sm z-20">
+                                مبيعات & FMCG
+                            </div>
                         </div>
-                    </div>
-                    <div class="p-8 relative">
-                        <div class="w-12 h-1 bg-indigo-600 mb-6"></div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-2">ياسر حجازي</h3>
-                        <p class="text-indigo-600 font-medium text-sm mb-4">Expert Sales Trainer</p>
-                        <p class="text-gray-500 text-sm leading-relaxed mb-8 h-20 overflow-hidden">
-                            تدريب احترافي في مبيعات السلع الاستهلاكية، التخطيط البيعي، والبيع النفسي والاستشاري بخبرة تزيد عن 25 عاماً.
-                        </p>
-                        <a href="yasir.html" class="block w-full py-4 text-center bg-indigo-50 text-indigo-700 font-bold rounded-xl hover:bg-indigo-600 hover:text-white transition duration-300 group-hover:shadow-lg shadow-indigo-200">
-                            تصفح البرنامج التدريبي
-                        </a>
+                        <div class="p-8 flex-grow tilt-content">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-1">ياسر حجازي</h3>
+                            <p class="text-indigo-600 font-medium text-sm mb-4">Expert Sales Trainer</p>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-6">
+                                تدريب احترافي في مبيعات السلع الاستهلاكية، التخطيط البيعي، والبيع النفسي والاستشاري بخبرة تزيد عن 25 عاماً.
+                            </p>
+                            <a href="yasir.html" class="magnetic-btn block w-full py-4 text-center bg-indigo-50 text-indigo-700 font-bold rounded-xl hover:bg-indigo-600 hover:text-white transition-colors duration-300">
+                                تصفح البرنامج
+                            </a>
+                        </div>
                     </div>
                 </div>
 
-                <div class="bg-white rounded-2xl shadow-xl overflow-hidden card-zoom group border border-gray-100 opacity-0 animate-slide-up" style="animation-delay: 0.3s;">
-                    <div class="h-64 overflow-hidden relative bg-gray-50">
-                        <div class="absolute inset-0 bg-purple-900/10 z-10 group-hover:bg-transparent transition"></div>
-                        <img src="https://raw.githubusercontent.com/BaselGhanem/FMCGTraining/refs/heads/main/lina.png" class="w-full h-full object-contain p-2 card-img transition duration-700" alt="Linda El Kurd">
-                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded text-xs font-bold text-purple-900 shadow z-20">
-                            قيادة & بناء فرق
+                <div class="gradient-border-card tilt-card group reveal" style="--border-color: #9333ea; transition-delay: 100ms;">
+                    <div class="bg-white rounded-2xl shadow-xl overflow-hidden h-full flex flex-col relative">
+                        <div class="h-64 overflow-hidden relative bg-gray-100 tilt-content">
+                            <div class="absolute inset-0 bg-purple-900/10 z-10 group-hover:bg-transparent transition duration-500"></div>
+                            <img src="https://raw.githubusercontent.com/BaselGhanem/FMCGTraining/refs/heads/main/lina.png" class="w-full h-full object-contain p-2 transition-transform duration-700 group-hover:scale-110" alt="Linda El Kurd">
+                            <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded text-xs font-bold text-purple-900 shadow-sm z-20">
+                                قيادة & بناء فرق
+                            </div>
                         </div>
-                    </div>
-                    <div class="p-8 relative">
-                        <div class="w-12 h-1 bg-purple-600 mb-6"></div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-2">ليندا الكرد</h3>
-                        <p class="text-purple-600 font-medium text-sm mb-4">Business Development Director</p>
-                        <p class="text-gray-500 text-sm leading-relaxed mb-8 h-20 overflow-hidden">
-                            برنامج بناء الفرق الحقيقية: رحلة عملية من التواصل وفهم الشخصيات (DISC) إلى التفاوض والإنتاجية العالية.
-                        </p>
-                        <a href="linda.html" class="block w-full py-4 text-center bg-purple-50 text-purple-700 font-bold rounded-xl hover:bg-purple-600 hover:text-white transition duration-300 group-hover:shadow-lg shadow-purple-200">
-                            تصفح البرنامج التدريبي
-                        </a>
+                        <div class="p-8 flex-grow tilt-content">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-1">ليندا الكرد</h3>
+                            <p class="text-purple-600 font-medium text-sm mb-4">Business Development Director</p>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-6">
+                                برنامج بناء الفرق الحقيقية: رحلة عملية من التواصل وفهم الشخصيات (DISC) إلى التفاوض والإنتاجية العالية.
+                            </p>
+                            <a href="linda.html" class="magnetic-btn block w-full py-4 text-center bg-purple-50 text-purple-700 font-bold rounded-xl hover:bg-purple-600 hover:text-white transition-colors duration-300">
+                                تصفح البرنامج
+                            </a>
+                        </div>
                     </div>
                 </div>
 
-                <div class="bg-white rounded-2xl shadow-xl overflow-hidden card-zoom group border border-gray-100 opacity-0 animate-slide-up" style="animation-delay: 0.5s;">
-                    <div class="h-64 overflow-hidden relative bg-gray-50">
-                        <div class="absolute inset-0 bg-slate-900/10 z-10 group-hover:bg-transparent transition"></div>
-                        <img src="https://raw.githubusercontent.com/BaselGhanem/FMCGTraining/refs/heads/main/basel.png" class="w-full h-full object-contain p-2 card-img transition duration-700" alt="Basel">
-                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded text-xs font-bold text-slate-900 shadow z-20">
-                            Excel & Power BI
+                <div class="gradient-border-card tilt-card group reveal" style="--border-color: #475569; transition-delay: 200ms;">
+                    <div class="bg-white rounded-2xl shadow-xl overflow-hidden h-full flex flex-col relative">
+                        <div class="h-64 overflow-hidden relative bg-gray-100 tilt-content">
+                            <div class="absolute inset-0 bg-slate-900/10 z-10 group-hover:bg-transparent transition duration-500"></div>
+                            <img src="https://raw.githubusercontent.com/BaselGhanem/FMCGTraining/refs/heads/main/basel.png" class="w-full h-full object-contain p-2 transition-transform duration-700 group-hover:scale-110" alt="Basel">
+                            <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded text-xs font-bold text-slate-900 shadow-sm z-20">
+                                Excel & Power BI
+                            </div>
                         </div>
-                    </div>
-                    <div class="p-8 relative">
-                        <div class="w-12 h-1 bg-slate-600 mb-6"></div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-2">باسل غانم</h3>
-                        <p class="text-slate-600 font-medium text-sm mb-4">Senior Sales Analyst</p>
-                        <p class="text-gray-500 text-sm leading-relaxed mb-8 h-20 overflow-hidden">
-                            تحويل البيانات إلى قرارات. برامج تدريبية متقدمة في Excel و Power BI لرفع الكفاءة التشغيلية وبناء لوحات التحكم.
-                        </p>
-                        <a href="basel.html" class="block w-full py-4 text-center bg-slate-50 text-slate-700 font-bold rounded-xl hover:bg-slate-800 hover:text-white transition duration-300 group-hover:shadow-lg shadow-slate-200">
-                            تصفح البرنامج التدريبي
-                        </a>
+                        <div class="p-8 flex-grow tilt-content">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-1">باسل غانم</h3>
+                            <p class="text-slate-600 font-medium text-sm mb-4">Senior Sales Analyst</p>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-6">
+                                تحويل البيانات إلى قرارات. برامج تدريبية متقدمة في Excel و Power BI لرفع الكفاءة التشغيلية وبناء لوحات التحكم.
+                            </p>
+                            <a href="basel.html" class="magnetic-btn block w-full py-4 text-center bg-slate-50 text-slate-700 font-bold rounded-xl hover:bg-slate-800 hover:text-white transition-colors duration-300">
+                                تصفح البرنامج
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -150,32 +250,178 @@
         </div>
     </section>
 
-    <section class="py-20 bg-white">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl font-bold text-main-900 mb-12">لماذا تختار مجموعتنا التدريبية؟</h2>
+    <section class="py-24 bg-white relative overflow-hidden" id="kpi-section">
+        <div class="absolute top-0 left-0 w-64 h-64 bg-blue-50 rounded-full blur-3xl opacity-60 -translate-x-1/2 -translate-y-1/2"></div>
+        <div class="absolute bottom-0 right-0 w-64 h-64 bg-purple-50 rounded-full blur-3xl opacity-60 translate-x-1/2 translate-y-1/2"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <h2 class="text-3xl font-bold text-main-900 mb-16 text-center reveal">إحصائيات النجاح</h2>
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="p-6">
-                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6 text-blue-600 text-2xl">⚡</div>
-                    <h4 class="text-xl font-bold mb-3">تكامل المهارات</h4>
-                    <p class="text-gray-500 text-sm">نغطي الدورة الكاملة للأعمال: من بيع المنتج (ياسر)، إلى إدارة الفريق (ليندا)، وصولاً لتحليل النتائج (باسل).</p>
+                
+                <div class="p-8 rounded-2xl bg-gray-50 hover:bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 group text-center reveal">
+                    <div class="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-blue-600 to-blue-400 mb-2 flex justify-center items-center">
+                        <span class="counter" data-target="25">0</span><span>+</span>
+                    </div>
+                    <p class="text-gray-600 font-medium">سنة خبرة مجمعة</p>
                 </div>
-                <div class="p-6">
-                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 text-green-600 text-2xl">🎯</div>
-                    <h4 class="text-xl font-bold mb-3">خبرة ميدانية</h4>
-                    <p class="text-gray-500 text-sm">جميع المدربين يمارسون عملهم في كبرى الشركات وليسوا مجرد أكاديميين، مما يضمن تدريباً واقعياً.</p>
+
+                <div class="p-8 rounded-2xl bg-gray-50 hover:bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 group text-center reveal" style="transition-delay: 100ms;">
+                    <div class="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-green-600 to-green-400 mb-2 flex justify-center items-center">
+                        <span class="counter" data-target="3000">0</span><span>+</span>
+                    </div>
+                    <p class="text-gray-600 font-medium">متدرب محترف</p>
                 </div>
-                <div class="p-6">
-                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6 text-purple-600 text-2xl">🚀</div>
-                    <h4 class="text-xl font-bold mb-3">أثر فوري</h4>
-                    <p class="text-gray-500 text-sm">برامجنا مصممة لتعطي نتائج ملموسة (ROI) وتغييراً في السلوك والإنتاجية من اليوم الأول.</p>
+
+                <div class="p-8 rounded-2xl bg-gray-50 hover:bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 group text-center reveal" style="transition-delay: 200ms;">
+                    <div class="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-purple-600 to-purple-400 mb-2 flex justify-center items-center">
+                        %<span class="counter" data-target="90">0</span>
+                    </div>
+                    <p class="text-gray-600 font-medium">نسبة رضا العملاء</p>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <footer class="bg-main-900 text-gray-400 py-10 border-t border-gray-800 text-center text-sm">
+    <div class="w-full leading-none text-main-900 bg-white">
+        <svg class="block w-full h-12 md:h-16" viewBox="0 0 1440 120" preserveAspectRatio="none">
+            <path fill="currentColor" d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"></path>
+        </svg>
+    </div>
+
+    <footer class="bg-main-900 text-gray-400 py-10 text-center text-sm relative z-20">
         <p>&copy; 2026 جميع الحقوق محفوظة - البوابة الموحدة للتدريب</p>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1- Scroll Reveal Logic
+            const reveals = document.querySelectorAll('.reveal');
+            const revealOnScroll = () => {
+                const windowHeight = window.innerHeight;
+                const elementVisible = 150;
+                reveals.forEach((reveal) => {
+                    const elementTop = reveal.getBoundingClientRect().top;
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveal.classList.add('active');
+                    }
+                });
+            };
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll(); // Check on load
+
+            // 8- Smart Header Logic
+            let lastScrollTop = 0;
+            const header = document.getElementById('main-header');
+            window.addEventListener('scroll', () => {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    header.classList.add('nav-up');
+                } else {
+                    header.classList.remove('nav-up');
+                }
+                lastScrollTop = scrollTop;
+            });
+
+            // 5- Custom Cursor Logic
+            const cursorDot = document.querySelector('.cursor-dot');
+            const cursorOutline = document.querySelector('.cursor-outline');
+            
+            // Move cursor
+            window.addEventListener('mousemove', (e) => {
+                const posX = e.clientX;
+                const posY = e.clientY;
+
+                // Dot follows instantly
+                cursorDot.style.left = `${posX}px`;
+                cursorDot.style.top = `${posY}px`;
+
+                // Outline follows with delay (using animate for smooth lag)
+                cursorOutline.animate({
+                    left: `${posX}px`,
+                    top: `${posY}px`
+                }, { duration: 500, fill: "forwards" });
+            });
+
+            // Hover interactions
+            const interactables = document.querySelectorAll('a, button, .magnetic-trigger');
+            interactables.forEach(el => {
+                el.addEventListener('mouseenter', () => cursorOutline.classList.add('hovered'));
+                el.addEventListener('mouseleave', () => cursorOutline.classList.remove('hovered'));
+            });
+
+            // 2- Magnetic Buttons
+            const magneticBtns = document.querySelectorAll('.magnetic-btn');
+            magneticBtns.forEach(btn => {
+                btn.addEventListener('mousemove', (e) => {
+                    const rect = btn.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+                });
+                btn.addEventListener('mouseleave', () => {
+                    btn.style.transform = 'translate(0px, 0px)';
+                });
+            });
+
+            // 3- 3D Tilt Logic
+            const tiltCards = document.querySelectorAll('.tilt-card');
+            tiltCards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left; // x position within the element
+                    const y = e.clientY - rect.top;  // y position within the element
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = ((y - centerY) / centerY) * -5; // Max rotation deg
+                    const rotateY = ((x - centerX) / centerX) * 5;
+
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+                });
+            });
+
+            // 9- KPI Counter Animation
+            const counters = document.querySelectorAll('.counter');
+            let hasCounted = false;
+            
+            const startCounters = () => {
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    const duration = 2000; // ms
+                    const increment = target / (duration / 16); // 60fps
+                    
+                    let current = 0;
+                    const updateCounter = () => {
+                        current += increment;
+                        if(current < target) {
+                            counter.innerText = Math.ceil(current);
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.innerText = target;
+                        }
+                    };
+                    updateCounter();
+                });
+            };
+
+            const kpiSection = document.getElementById('kpi-section');
+            const kpiObserver = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting && !hasCounted) {
+                    startCounters();
+                    hasCounted = true;
+                }
+            }, { threshold: 0.5 });
+            
+            kpiObserver.observe(kpiSection);
+
+        });
+    </script>
 </body>
 </html>
